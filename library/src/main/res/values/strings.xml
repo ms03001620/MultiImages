@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MultiImage</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+
+    <string name="send">发送</string>
+    <string name="complete">完成</string>
+    <string name="preview">预览</string>
+    
+    <string name="format_send_count">完成(%1$d/%2$d)</string>
+    <string name="format_preview">预览(%1$d)</string>
+    <string name="format_warn_max_send">你最多只能选择%1$d张图片</string>
+    <string name="format_file_count">%1$d张</string>
+    
+
+    <string name="original">原图</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/image_rect_write_dark_bg" android:state_pressed="true"></item>
+    <item android:drawable="@drawable/image_rect_write_dark_bg" android:state_enabled="false"></item>
+    <item android:drawable="@drawable/image_rect_write_bg"></item>
+
+</selector>

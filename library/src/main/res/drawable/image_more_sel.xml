@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/spinner_ab_default_holo_light_am" android:state_pressed="true"></item>
+    <item android:drawable="@drawable/spinner_ab_default_holo_dark_am" android:state_enabled="false"></item>
+    <item android:drawable="@drawable/spinner_ab_default_holo_dark_am"></item>
+
+</selector>

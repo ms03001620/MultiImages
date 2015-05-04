@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#222222" >
+
+    <RelativeLayout
+        android:layout_width="120dp"
+        android:layout_height="119dp" >
+
+        <ImageView
+            android:id="@+id/image_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:src="@drawable/image_empty" />
+
+        <ImageView
+            android:id="@+id/image_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#88000000"
+            android:contentDescription="@null"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/check"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@null"
+        android:focusable="false" />
+
+</RelativeLayout>
