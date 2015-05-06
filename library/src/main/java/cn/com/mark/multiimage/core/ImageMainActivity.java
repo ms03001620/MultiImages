@@ -53,8 +53,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 		setContentView(R.layout.activity_image_main);
 		isOriginal = this.getIntent().getBooleanExtra("action-original", false);
 		mDataDDR = new ArrayList<ImageFolderEntity>();
-		View vvv = this.findViewById(R.id.send);
-		mTextSend = (TextView)vvv;
+		mTextSend = (TextView)this.findViewById(R.id.send);
 		mTextPreview = (TextView)this.findViewById(R.id.preview);
 		mTextMore = (TextView)this.findViewById(R.id.more);
 		mGridView = (GridView)this.findViewById(R.id.grid);
