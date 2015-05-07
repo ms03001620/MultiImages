@@ -9,4 +9,6 @@
     <dimen name="image_foot_height">47dp</dimen>
     <dimen name="image_folder_height">90dp</dimen>
 
+    <dimen name="layout_folder_name_width">100dp</dimen>
+
 </resources>
