@@ -20,43 +20,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImageFolderEntity {
-	private String name;
-	private String path;
-	private List<ImageEntity> list;
-	
-	public ImageFolderEntity(){
-		list = new ArrayList<ImageEntity>();
-	}
+    private String name;
+    private String path;
+    private List<ImageEntity> list;
 
-	public String getName() {
-		return name;
-	}
+    public ImageFolderEntity() {
+        list = new ArrayList<ImageEntity>();
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getPath() {
-		return path;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPath(String path) {
-		this.path = path;
-	}
+    public String getPath() {
+        return path;
+    }
 
-	public int getCount() {
-		return list.size();
-	}
+    public void setPath(String path) {
+        this.path = path;
+    }
 
-	public ImageEntity getFirst() {
-		return list.get(0);
-	}
+    public int getCount() {
+        return list.size();
+    }
 
-	public List<ImageEntity> getList() {
-		return list;
-	}
-	
-	public void addFile(ImageEntity file){
-		list.add(file);
-	}
+    public ImageEntity getFirst() {
+        return list.get(0);
+    }
+
+    public List<ImageEntity> getList() {
+        return list;
+    }
+
+    public void addFile(ImageEntity file) {
+        list.add(file);
+    }
 }

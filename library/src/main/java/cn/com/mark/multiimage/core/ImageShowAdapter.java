@@ -32,7 +32,7 @@ public class ImageShowAdapter extends BaseAdapter{
 	private ArrayList<ImageEntity> mData;
 	private View mListView;
 	private List<ImageEntity> mResult;
-	private int checkPosition;
+
 	
 	public ImageShowAdapter(Context context, View view, List<ImageEntity> result) {
 		this.mContext = context;

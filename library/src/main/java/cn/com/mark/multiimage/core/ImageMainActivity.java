@@ -38,11 +38,10 @@ import java.util.List;
 public class ImageMainActivity extends ImagesBaseActivity {
 
 	private GridView mGridView;
-	private List<ImageFolderEntity> mDataDDR;
 	private ImageShowAdapter mGridApdater;
 	private TextView mTextSend;
 	private TextView mTextPreview;
-	private TextView mTextMore;
+	private TextView mTextFolder;
 	private ImageFolderWindows mMenuWindows;
 	private ImageFolderAdapter mFolderAdapter;
 	private static int REQUESTCODE = 10010;
@@ -55,7 +54,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 
 		mTextSend = (TextView)this.findViewById(R.id.send);
 		mTextPreview = (TextView)this.findViewById(R.id.preview);
-		mTextMore = (TextView)this.findViewById(R.id.more);
+		mTextFolder = (TextView)this.findViewById(R.id.text_folder);
 		mGridView = (GridView)this.findViewById(R.id.grid);
 		mGridApdater = new ImageShowAdapter(this, mGridView, sResult);
 		mFolderAdapter = new ImageFolderAdapter(this);
@@ -110,14 +109,15 @@ public class ImageMainActivity extends ImagesBaseActivity {
 		RelativeLayout layout = (RelativeLayout) View.inflate(this, R.layout.image_layout_window_ddr, null);
 		final View maskView = findViewById(R.id.view_mask);
 		
-		mTextMore.setOnClickListener(new View.OnClickListener() {
+		mTextFolder.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				maskView.postDelayed(new Runnable(){
+				maskView.postDelayed(new Runnable() {
 					@Override
 					public void run() {
 						maskView.setVisibility(View.VISIBLE);
-					}}, 500);
+					}
+				}, 500);
 				mMenuWindows.showAtLocation2(view, Gravity.LEFT | Gravity.BOTTOM, 0, toFootOffsize);
 			}
 		});
@@ -131,7 +131,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 
 				mGridApdater.update(entity.getList());
 				mFolderAdapter.setSelection(position);
-				mTextMore.setText(entity.getName());
+				mTextFolder.setText(entity.getName());
 				view.postDelayed(new Runnable() {
 					@Override
 					public void run() {
@@ -207,13 +207,13 @@ public class ImageMainActivity extends ImagesBaseActivity {
         }
 
 		List<ImageFolderEntity> mDataDDR = new ArrayList<ImageFolderEntity>();
-        mDataDDR.clear();
         if(!mDataFolder.isEmpty()){
             mDataDDR.addAll(mDataFolder.values());
 
             mGridApdater.update(new ArrayList<ImageEntity>(mDataDDR.get(0).getList()));
             mFolderAdapter.update(mDataDDR);
             mFolderAdapter.setSelection(0);
+			mTextFolder.setText(mDataDDR.get(0).getName());
             mMenuWindows.setListSize(mDataDDR.size());
         }
 	}

@@ -16,7 +16,7 @@
         android:background="#44000000" />
 
     <TextView
-        android:id="@+id/more"
+        android:id="@+id/text_folder"
         android:layout_width="wrap_content"
         android:minWidth="@dimen/layout_folder_name_width"
         android:gravity="center"
@@ -24,7 +24,6 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:background="@drawable/image_more_sel"
-        android:text="所有图片"
         android:textColor="@drawable/image_text_btn"
         android:textSize="15sp" />
 
