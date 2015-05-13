@@ -38,7 +38,7 @@ import java.util.List;
 public class ImageMainActivity extends ImagesBaseActivity {
 
 	private GridView mGridView;
-	private ImageShowAdapter mGridApdater;
+	private ImageShowAdapter mGridAdapter;
 	private TextView mTextSend;
 	private TextView mTextPreview;
 	private TextView mTextFolder;
@@ -56,10 +56,10 @@ public class ImageMainActivity extends ImagesBaseActivity {
 		mTextPreview = (TextView)this.findViewById(R.id.preview);
 		mTextFolder = (TextView)this.findViewById(R.id.text_folder);
 		mGridView = (GridView)this.findViewById(R.id.grid);
-		mGridApdater = new ImageShowAdapter(this, mGridView, sResult);
+		mGridAdapter = new ImageShowAdapter(this, mGridView, sResult);
 		mFolderAdapter = new ImageFolderAdapter(this);
 
-		mGridView.setAdapter(mGridApdater);
+		mGridView.setAdapter(mGridAdapter);
 		mGridView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int postition, long id) {
@@ -82,7 +82,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 			}
 		});
 		
-		mGridApdater.setPostCallBack(new ImagePost() {
+		mGridAdapter.setPostCallBack(new ImagePost() {
 			@Override
 			public void onPost() {
 				updateBtn();
@@ -129,7 +129,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 			public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
 				ImageFolderEntity entity = mFolderAdapter.getItem(position);
 
-				mGridApdater.update(entity.getList());
+				mGridAdapter.update(entity.getList());
 				mFolderAdapter.setSelection(position);
 				mTextFolder.setText(entity.getName());
 				view.postDelayed(new Runnable() {
@@ -210,7 +210,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
         if(!mDataFolder.isEmpty()){
             mDataDDR.addAll(mDataFolder.values());
 
-            mGridApdater.update(new ArrayList<ImageEntity>(mDataDDR.get(0).getList()));
+            mGridAdapter.update(new ArrayList<ImageEntity>(mDataDDR.get(0).getList()));
             mFolderAdapter.update(mDataDDR);
             mFolderAdapter.setSelection(0);
 			mTextFolder.setText(mDataDDR.get(0).getName());
@@ -240,7 +240,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(requestCode == REQUESTCODE){
 			if(resultCode==RESULT_OK){
-				mGridApdater.notifyDataSetChanged();
+				mGridAdapter.notifyDataSetChanged();
 				updateBtn();
 				
 				if(data!=null){
