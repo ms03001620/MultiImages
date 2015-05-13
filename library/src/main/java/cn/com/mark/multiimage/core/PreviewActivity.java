@@ -41,7 +41,7 @@ public class PreviewActivity extends ImagesBaseActivity {
     private CheckBox mCheckOrigrnal;
     private CheckBox mCheckOn;
     private TextView mTextSend;
-    private List<ImageEntity> datas;
+    private ArrayList<ImageEntity> datas;
     private boolean isPerViewMode;
     private int current;
 
@@ -77,7 +77,7 @@ public class PreviewActivity extends ImagesBaseActivity {
             datas = new ArrayList<ImageEntity>(sResult);
             current = 0;
         } else {
-            datas = sData;
+            datas = intent.getParcelableArrayListExtra("action-data");
             current = sPosotion;
         }
 

@@ -29,7 +29,7 @@ import android.widget.Toast;
 public class ImageShowAdapter extends BaseAdapter{
 	private ImagePost postCallBack;
 	private Context mContext;
-	private List<ImageEntity> mData;
+	private ArrayList<ImageEntity> mData;
 	private View mListView;
 	private List<ImageEntity> mResult;
 	private int checkPosition;
@@ -46,7 +46,7 @@ public class ImageShowAdapter extends BaseAdapter{
 		return mData.size();
 	}
 	
-	public List<ImageEntity> getData(){
+	public ArrayList<ImageEntity> getData(){
 		return mData;
 	}
 

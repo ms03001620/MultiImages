@@ -30,7 +30,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 public class ImagesBaseActivity extends FragmentActivity{
-	protected static List<ImageEntity> sData;
+
 	protected static int sPosotion;
 	protected static final int MAX_SEND = 5;
 	protected static List<ImageEntity> sResult = new ArrayList<ImageEntity>();

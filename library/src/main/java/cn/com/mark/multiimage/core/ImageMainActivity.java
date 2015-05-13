@@ -39,7 +39,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 
 	private GridView mGridView;
 	private List<ImageFolderEntity> mDataDDR;
-	private ImageShowAdapter mApdater;
+	private ImageShowAdapter mGridApdater;
 	private TextView mTextSend;
 	private TextView mTextPreview;
 	private TextView mTextMore;
@@ -52,19 +52,25 @@ public class ImageMainActivity extends ImagesBaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_image_main);
 		isOriginal = this.getIntent().getBooleanExtra("action-original", false);
-		mDataDDR = new ArrayList<ImageFolderEntity>();
+
 		mTextSend = (TextView)this.findViewById(R.id.send);
 		mTextPreview = (TextView)this.findViewById(R.id.preview);
 		mTextMore = (TextView)this.findViewById(R.id.more);
 		mGridView = (GridView)this.findViewById(R.id.grid);
-		mApdater = new ImageShowAdapter(this, mGridView, sResult);
+		mGridApdater = new ImageShowAdapter(this, mGridView, sResult);
 		mFolderAdapter = new ImageFolderAdapter(this);
 
-		mGridView.setAdapter(mApdater);
+		mGridView.setAdapter(mGridApdater);
 		mGridView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int postition, long id) {
+
+				ImageShowAdapter adapter = (ImageShowAdapter) mGridView.getAdapter();
+
+
 				Intent intent = new Intent(ImageMainActivity.this, PreviewActivity.class);
+				intent.putParcelableArrayListExtra("action-data", adapter.getData());
+
 				sPosotion = postition;
 				startActivityForResult(intent, REQUESTCODE);
 			}
@@ -77,7 +83,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 			}
 		});
 		
-		mApdater.setPostCallBack(new ImagePost() {
+		mGridApdater.setPostCallBack(new ImagePost() {
 			@Override
 			public void onPost() {
 				updateBtn();
@@ -122,8 +128,8 @@ public class ImageMainActivity extends ImagesBaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
 				ImageFolderEntity entity = mFolderAdapter.getItem(position);
-				sData = entity.getList();
-				mApdater.update(sData);
+
+				mGridApdater.update(entity.getList());
 				mFolderAdapter.setSelection(position);
 				mTextMore.setText(entity.getName());
 				view.postDelayed(new Runnable() {
@@ -200,11 +206,12 @@ public class ImageMainActivity extends ImagesBaseActivity {
             cursor.close();
         }
 
+		List<ImageFolderEntity> mDataDDR = new ArrayList<ImageFolderEntity>();
         mDataDDR.clear();
         if(!mDataFolder.isEmpty()){
             mDataDDR.addAll(mDataFolder.values());
-            sData = new ArrayList<ImageEntity>(mDataDDR.get(0).getList());
-            mApdater.update(sData);
+
+            mGridApdater.update(new ArrayList<ImageEntity>(mDataDDR.get(0).getList()));
             mFolderAdapter.update(mDataDDR);
             mFolderAdapter.setSelection(0);
             mMenuWindows.setListSize(mDataDDR.size());
@@ -233,7 +240,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(requestCode == REQUESTCODE){
 			if(resultCode==RESULT_OK){
-				mApdater.notifyDataSetChanged();
+				mGridApdater.notifyDataSetChanged();
 				updateBtn();
 				
 				if(data!=null){
