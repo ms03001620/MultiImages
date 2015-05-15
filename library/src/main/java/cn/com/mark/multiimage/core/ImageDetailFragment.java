@@ -48,12 +48,11 @@ public class ImageDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.image_info_fragment, container, false);
-        mImageView = (ImageView) v.findViewById(R.id.image);
+        mImageView = (ImageView) inflater.inflate(R.layout.image_info_fragment, container, false);
         mBitmap = BitmapUtils.getThumbnail(getActivity(), mImageUrl.getUrl());
         mImageView.setImageBitmap(mBitmap);
         new PhotoViewAttacher(mImageView);
-        return v;
+        return mImageView;
     }
 
     @Override
