@@ -24,6 +24,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
+
         mTextView = (TextView)findViewById(R.id.text);
     }
 
