@@ -18,7 +18,6 @@ package cn.com.mark.multiimage.core;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,9 +40,9 @@ public class PreviewActivity extends ImagesBaseActivity {
     private CheckBox mCheckOrigrnal;
     private CheckBox mCheckOn;
     private TextView mTextSend;
-    private ArrayList<ImageEntity> datas;
+    private ArrayList<ImageEntity> mDatas;
     private boolean isPerViewMode;
-    private int current;
+    private int mPositionInAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +73,11 @@ public class PreviewActivity extends ImagesBaseActivity {
             isPerViewMode = intent.getBooleanExtra("preview", false);
         }
         if (isPerViewMode) {
-            datas = new ArrayList<ImageEntity>(sResult);
-            current = 0;
+            mDatas = new ArrayList<ImageEntity>(sResult);
+            mPositionInAll = 0;
         } else {
-            datas = intent.getParcelableArrayListExtra("action-data");
-            current = sPosotion;
+            mDatas = intent.getParcelableArrayListExtra("action-data");
+            mPositionInAll = sPosotion;
         }
 
         updateTitle();
@@ -104,14 +103,14 @@ public class PreviewActivity extends ImagesBaseActivity {
             }
 
             public void onPageSelected(int arg0) {
-                current = arg0;
+                mPositionInAll = arg0;
                 updateTitle();
                 updateCheckStatus();
                 updateOrgrnalSize();
             }
         });
 
-        mPager.setCurrentItem(current);
+        mPager.setCurrentItem(mPositionInAll);
         mCheckOn.setOnCheckedChangeListener(lisChecked);
     }
 
@@ -119,7 +118,7 @@ public class PreviewActivity extends ImagesBaseActivity {
         @Override
         public void onCheckedChanged(CompoundButton view, boolean isChecked) {
             setResult(RESULT_OK);
-            ImageEntity element = datas.get(current);
+            ImageEntity element = mDatas.get(mPositionInAll);
             if (!element.isCheck()) {
                 int size = sResult.size();
                 if (size >= ImagesBaseActivity.MAX_SEND) {
@@ -140,7 +139,7 @@ public class PreviewActivity extends ImagesBaseActivity {
     };
 
     private void updateCheckStatus() {
-        boolean checked = datas.get(current).isCheck();
+        boolean checked = mDatas.get(mPositionInAll).isCheck();
         mCheckOn.setOnCheckedChangeListener(null);
         mCheckOn.setChecked(checked);
         mCheckOn.setOnCheckedChangeListener(lisChecked);
@@ -168,20 +167,20 @@ public class PreviewActivity extends ImagesBaseActivity {
     }
 
     private void updateTitle() {
-        int all = datas.size();
-        String newtitle = current + 1 + "/" + all;
+        int all = mDatas.size();
+        String newtitle = mPositionInAll + 1 + "/" + all;
         mTextTitle.setText(newtitle);
     }
 
     private String getFileSize() {
-        ImageEntity image = datas.get(current);
+        ImageEntity image = mDatas.get(mPositionInAll);
         String showSize = getString(image.getSize());
         return showSize;
     }
 
     public String getAllFileSize() {
         double totalbyte = 0;
-        if (datas.size() > 0) {
+        if (mDatas.size() > 0) {
             for (ImageEntity data : sResult) {
                 totalbyte += data.getSize();
             }
@@ -191,17 +190,17 @@ public class PreviewActivity extends ImagesBaseActivity {
 
     private String getString(double totalbyte) {
         if (totalbyte == 0) {
-            return "原图";
+            return getString(R.string.original);
         } else {
             if (totalbyte > 1024 * 1024) {
                 double tms = totalbyte / 1024 / 1024;
-                return "原图(" + sizeFormat(tms) + "M)";
+                return getString(R.string.original)+"(" + sizeFormat(tms) + "M)";
             } else {
                 double tms = totalbyte / 1024;
                 if (tms == 0) {
-                    return "原图";
+                    return getString(R.string.original);
                 }
-                return "原图(" + sizeFormat(tms) + "K)";
+                return getString(R.string.original)+"(" + sizeFormat(tms) + "K)";
             }
         }
     }
@@ -218,12 +217,12 @@ public class PreviewActivity extends ImagesBaseActivity {
 
         @Override
         public int getCount() {
-            return datas.size();
+            return mDatas.size();
         }
 
         @Override
         public Fragment getItem(int position) {
-            ImageEntity image = datas.get(position);
+            ImageEntity image = mDatas.get(position);
             return ImageDetailFragment.newInstance(image);
         }
     }

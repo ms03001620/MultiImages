@@ -5,5 +5,5 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:adjustViewBounds="true"
-    android:contentDescription="@string/app_name"
+    android:contentDescription="@null"
     android:scaleType="center" />

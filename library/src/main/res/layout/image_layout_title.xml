@@ -28,7 +28,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/sp"
-        android:text="图片"
+        android:text="@string/image"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
