@@ -1,8 +1,6 @@
 <resources>
-
 	<style name="popwin_anim_style">
 	     <item name="android:windowEnterAnimation">@anim/image_menushow</item>
 	     <item name="android:windowExitAnimation">@anim/image_menuhide</item>
 	</style>
-
 </resources>

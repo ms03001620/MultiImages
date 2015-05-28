@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <string name="app_name">library</string>-->
-
     <string name="check">Checked</string>
     <string name="image">Photo</string>
     <string name="send">Send</string>
@@ -13,5 +11,4 @@
     <string name="format_preview">Preview(%1$d)</string>
     <string name="format_warn_max_send">Can only choose %1$d pictures</string>
     <string name="format_file_count">%1$d Photos</string>
-
 </resources>

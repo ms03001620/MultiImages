@@ -63,13 +63,9 @@ public class ImageMainActivity extends ImagesBaseActivity {
 		mGridView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int postition, long id) {
-
 				ImageShowAdapter adapter = (ImageShowAdapter) mGridView.getAdapter();
-
-
 				Intent intent = new Intent(ImageMainActivity.this, PreviewActivity.class);
 				intent.putParcelableArrayListExtra("action-data", adapter.getData());
-
 				sPosotion = postition;
 				startActivityForResult(intent, REQUESTCODE);
 			}
@@ -103,9 +99,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 				startActivityForResult(intent, REQUESTCODE);
 			}
 		});
-		
-		final int toFootOffsize = this.getResources().getDimensionPixelSize(R.dimen.image_head_height);
-		
+
 		RelativeLayout layout = (RelativeLayout) View.inflate(this, R.layout.image_layout_window_ddr, null);
 		final View maskView = findViewById(R.id.view_mask);
 		
@@ -118,7 +112,7 @@ public class ImageMainActivity extends ImagesBaseActivity {
 						maskView.setVisibility(View.VISIBLE);
 					}
 				}, 500);
-				mMenuWindows.showAtLocation2(view, Gravity.LEFT | Gravity.BOTTOM, 0, toFootOffsize);
+				mMenuWindows.showAtLocation2(view, Gravity.LEFT | Gravity.BOTTOM, 0, getResources().getDimensionPixelSize(R.dimen.image_head_height));
 			}
 		});
 		
