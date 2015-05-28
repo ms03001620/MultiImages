@@ -4,4 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_images">Images</string>
+
+
+    <string name="get_image">Get Images</string>
 </resources>
