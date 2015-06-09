@@ -149,10 +149,10 @@ public class ImageMainActivity extends ImagesBaseActivity {
 	}
 	
 	public void updateBtn(){
-		boolean isEmpyt = sResult.size()==0;
-		mTextSend.setEnabled(!isEmpyt);
-		mTextPreview.setEnabled(!isEmpyt);
-		if(isEmpyt){
+		boolean isEmpty = sResult.size()==0;
+		mTextSend.setEnabled(!isEmpty);
+		mTextPreview.setEnabled(!isEmpty);
+		if(isEmpty){
 			mTextSend.setText(R.string.complete);
 			mTextPreview.setText(R.string.preview);
 		}else{
