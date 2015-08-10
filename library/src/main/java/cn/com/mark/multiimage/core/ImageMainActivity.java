@@ -32,6 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -191,6 +192,20 @@ public class ImageMainActivity extends ImagesBaseActivity {
 				entity.setTimeAdd(timeAdd);
 				entity.setTimeModify(timeModify);
 				entity.setTimeToken(timeToken);
+
+				if(entity.isRang7()){
+					String fname = getString(R.string.folder_recent);
+					ImageFolderEntity folder = mDataFolder.get(fname);
+					if(folder!=null){
+						folder.addFile(entity);
+					}else{
+						ImageFolderEntity newFolder = new ImageFolderEntity(fname);
+						newFolder.setPath(path.replace(name, ""));
+						newFolder.setName(fname);
+						newFolder.addFile(entity);
+						mDataFolder.put(fname, newFolder);
+					}
+				}
                 
                 String folderName = getFolderName(path);
                 ImageFolderEntity folder = mDataFolder.get(folderName);
@@ -210,9 +225,9 @@ public class ImageMainActivity extends ImagesBaseActivity {
 		List<ImageFolderEntity> mDataDDR = new ArrayList<ImageFolderEntity>();
         if(!mDataFolder.isEmpty()){
             mDataDDR.addAll(mDataFolder.values());
-
-            mGridAdapter.update(new ArrayList<ImageEntity>(mDataDDR.get(0).getList()));
-            mFolderAdapter.update(mDataDDR);
+			Collections.sort(mDataDDR);
+			mFolderAdapter.update(mDataDDR);
+            mGridAdapter.update(new ArrayList<ImageEntity>(mFolderAdapter.getItem(0).getList()));
             mFolderAdapter.setSelection(0);
 			mTextFolder.setText(mDataDDR.get(0).getName());
             mMenuWindows.setListSize(mDataDDR.size());
