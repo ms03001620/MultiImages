@@ -62,4 +62,14 @@ public class PreferencesUtils {
 		editor.putLong(key, defValue);
 		editor.commit();
 	}
+
+	public static long getInt(String key, int defValue) {
+		return instance.sharedPreferences.getInt(key, defValue);
+	}
+
+	public static void putInt(String key, int defValue) {
+		Editor editor = instance.sharedPreferences.edit();
+		editor.putInt(key, defValue);
+		editor.commit();
+	}
 }
