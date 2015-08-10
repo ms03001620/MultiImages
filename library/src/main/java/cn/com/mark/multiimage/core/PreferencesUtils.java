@@ -63,7 +63,7 @@ public class PreferencesUtils {
 		editor.commit();
 	}
 
-	public static long getInt(String key, int defValue) {
+	public static int getInt(String key, int defValue) {
 		return instance.sharedPreferences.getInt(key, defValue);
 	}
 
