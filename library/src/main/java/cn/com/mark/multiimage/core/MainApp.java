@@ -25,6 +25,7 @@ public class MainApp extends Application {
     public void onCreate() {
         super.onCreate();
         sContext = getApplicationContext();
+        PreferencesUtils.init(this, "multiimage");
     }
 
     public static Context getContext() {
