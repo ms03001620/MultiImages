@@ -180,17 +180,17 @@ public class ImageMainActivity extends ImagesBaseActivity {
     			}
     			String path = cursor.getString(2);
     			long size = cursor.getLong(3);
-
-				Object o = cursor.getString(4);
-				Object oo = cursor.getString(5);
-				Object ooo = cursor.getString(6);
-
-				String ss = o.toString()+oo.toString()+ooo.toString();
+				long timeAdd = cursor.getLong(4);
+				long timeModify = cursor.getLong(5);
+				long timeToken = cursor.getLong(6);
 
                 entity.setId(id);
                 entity.setName(name);
                 entity.setUrl(path);
                 entity.setSize(size);
+				entity.setTimeAdd(timeAdd);
+				entity.setTimeModify(timeModify);
+				entity.setTimeToken(timeToken);
                 
                 String folderName = getFolderName(path);
                 ImageFolderEntity folder = mDataFolder.get(folderName);
