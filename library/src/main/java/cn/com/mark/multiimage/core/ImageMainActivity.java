@@ -180,6 +180,13 @@ public class ImageMainActivity extends ImagesBaseActivity {
     			}
     			String path = cursor.getString(2);
     			long size = cursor.getLong(3);
+
+				Object o = cursor.getString(4);
+				Object oo = cursor.getString(5);
+				Object ooo = cursor.getString(6);
+
+				String ss = o.toString()+oo.toString()+ooo.toString();
+
                 entity.setId(id);
                 entity.setName(name);
                 entity.setUrl(path);
