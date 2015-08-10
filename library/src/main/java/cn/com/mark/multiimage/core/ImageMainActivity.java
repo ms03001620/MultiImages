@@ -170,10 +170,10 @@ public class ImageMainActivity extends ImagesBaseActivity {
 
 	public void loadForTask(int type){
 		HashMap<String, ImageFolderEntity> mDataFolder = new HashMap<String, ImageFolderEntity>();
-		Cursor cursor = MediaStore.Images.Media.query(getContentResolver(), MediaStore.Images.Media.EXTERNAL_CONTENT_URI, ImageEntity.STORE_IMAGES);
-        if (cursor != null) { 
-            cursor.moveToFirst(); 
-            while (cursor.moveToNext()) { 
+
+		Cursor cursor = MediaStore.Images.Media.query(getContentResolver(), MediaStore.Images.Media.EXTERNAL_CONTENT_URI, ImageEntity.STORE_IMAGES, null ,null, MediaStore.Images.Media.DATE_TAKEN+" desc");
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
                 ImageEntity entity = new ImageEntity();
     			long id = cursor.getLong(0);
     			String name = cursor.getString(1);
