@@ -117,11 +117,12 @@ public class ImageMainActivity extends ImagesBaseActivity {
 			}
 		});
 		
-		ListView folderlist = (ListView) layout.findViewById(R.id.lv_dialog);
+		ListView folderList = (ListView) layout.findViewById(R.id.lv_dialog);
 		
-		folderlist.setOnItemClickListener(new OnItemClickListener() {
+		folderList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
+				PreferencesUtils.putInt("folder-last-position", position);
 				ImageFolderEntity entity = mFolderAdapter.getItem(position);
 
 				mGridAdapter.update(entity.getList());
@@ -136,8 +137,8 @@ public class ImageMainActivity extends ImagesBaseActivity {
 			}
 		});
 
-		mFolderAdapter.setListView(folderlist);
-		folderlist.setAdapter(mFolderAdapter);
+		mFolderAdapter.setListView(folderList);
+		folderList.setAdapter(mFolderAdapter);
 		mMenuWindows = new ImageFolderWindows(this, layout);
 		mMenuWindows.setOnDismissListener(new OnDismissListener() {
 			@Override
@@ -223,15 +224,20 @@ public class ImageMainActivity extends ImagesBaseActivity {
         }
 
 		List<ImageFolderEntity> mDataDDR = new ArrayList<ImageFolderEntity>();
-        if(!mDataFolder.isEmpty()){
-            mDataDDR.addAll(mDataFolder.values());
+		if (!mDataFolder.isEmpty()) {
+			mDataDDR.addAll(mDataFolder.values());
 			Collections.sort(mDataDDR);
 			mFolderAdapter.update(mDataDDR);
-            mGridAdapter.update(new ArrayList<ImageEntity>(mFolderAdapter.getItem(0).getList()));
-            mFolderAdapter.setSelection(0);
-			mTextFolder.setText(mDataDDR.get(0).getName());
-            mMenuWindows.setListSize(mDataDDR.size());
-        }
+
+			int lastPosition = PreferencesUtils.getInt("folder-last-position", 0);
+			if (lastPosition >= mFolderAdapter.getCount()) {
+				lastPosition = 0;
+			}
+			mGridAdapter.update(mFolderAdapter.getItem(lastPosition).getList());
+			mFolderAdapter.setSelection(lastPosition);
+			mTextFolder.setText(mFolderAdapter.getItem(lastPosition).getName());
+			mMenuWindows.setListSize(mFolderAdapter.getCount());
+		}
 	}
 
 	
