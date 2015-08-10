@@ -20,6 +20,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 
+import java.util.Calendar;
+
 public class ImageEntity implements Parcelable {
 
     public static final String[] STORE_IMAGES = {
@@ -144,5 +146,14 @@ public class ImageEntity implements Parcelable {
         timeAdd = in.readLong();
         timeModify = in.readLong();
         timeToken = in.readLong();
+    }
+
+    public boolean isRang7(){
+        Calendar source = Calendar.getInstance();
+        source.setTimeInMillis(timeToken);
+
+        Calendar targer = Calendar.getInstance();
+        targer.add(Calendar.DAY_OF_YEAR, -7);
+        return source.after(targer);
     }
 }
