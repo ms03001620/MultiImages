@@ -6,6 +6,7 @@
     <string name="complete">Finish</string>
     <string name="preview">Preview</string>
     <string name="original">Original</string>
+    <string name="folder_recent">Recent</string>
 
     <string name="format_send_count">Finish(%1$d/%2$d)</string>
     <string name="format_preview">Preview(%1$d)</string>
