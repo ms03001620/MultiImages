@@ -44,10 +44,10 @@ public class BitmapUtils {
 	}
 
 	public static Bitmap getThumbnail(Context context, long origId){
-		BitmapFactory.Options bounds = new BitmapFactory.Options();
-		bounds.inPurgeable=true;
-		bounds.inInputShareable=true;
-		Bitmap bitmap = MediaStore.Images.Thumbnails.getThumbnail(context.getContentResolver(), origId, MediaStore.Images.Thumbnails.MINI_KIND, bounds);
+		//BitmapFactory.Options bounds = new BitmapFactory.Options();
+		//bounds.inPurgeable=true;
+		//bounds.inInputShareable=true;
+		Bitmap bitmap = MediaStore.Images.Thumbnails.getThumbnail(context.getContentResolver(), origId, MediaStore.Images.Thumbnails.MINI_KIND, /*bounds*/null);
 		return bitmap;
 	}
 
