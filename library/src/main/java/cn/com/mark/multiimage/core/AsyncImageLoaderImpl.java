@@ -22,6 +22,7 @@ import java.util.Vector;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -77,7 +78,9 @@ public class AsyncImageLoaderImpl {
             ImageEntity entity = task.getEntity();
 
             if (entity != null) {
+                long time = System.currentTimeMillis();
                 result = BitmapUtils.getThumbnail(MainApp.getContext(), entity.getId());
+                Log.d("______", "id:"+entity.getUrl()+", time:"+(System.currentTimeMillis()-time));
             } else {
                 result = BitmapUtils.getBitmapFromPath(url);
             }
