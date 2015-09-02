@@ -14,7 +14,7 @@ import cn.com.mark.multiimage.core.ImageMainActivity;
 
 public class MainActivity extends ActionBarActivity {
     private TextView mTextView;
-    private final static int REQUESTCODE = 10010;
+    private final static int REQUEST_CODE = 10010;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +26,14 @@ public class MainActivity extends ActionBarActivity {
     public void onBtnGetClick(View view){
         Intent intent = new Intent(MainActivity.this, ImageMainActivity.class);
         intent.putExtra("action-original", true);
-        startActivityForResult(intent, REQUESTCODE);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode== Activity.RESULT_OK){
-            if(requestCode == REQUESTCODE){
+            if(requestCode == REQUEST_CODE){
                 String paths = "";
                 ArrayList<Uri> images = data.getParcelableArrayListExtra("result");
                 for(int i=0;i<images.size();i++){
